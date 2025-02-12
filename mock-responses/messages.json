@@ -1,0 +1,287 @@
+[
+    {
+        "id": "1",
+        "ChatID": 1,
+        "content": "Oi, Lorrane! Como você está?"
+    },
+    {
+        "id": "2",
+        "ChatID": 1,
+        "content": "Oi, Lorrane! Como vai o seu trabalho?"
+    },
+    {
+        "id": "3",
+        "ChatID": 2,
+        "content": "Oi, Carlos! Tudo certo?"
+    },
+    {
+        "id": "4",
+        "ChatID": 2,
+        "content": "Oi, Carlos! Vamos marcar algo no fim de semana?"
+    },
+    {
+        "id": "5",
+        "ChatID": 3,
+        "content": "Boa tarde, Amanda! Como foi o seu dia?"
+    },
+    {
+        "id": "6",
+        "ChatID": 3,
+        "content": "Oi, Amanda! Vamos sair hoje à noite?"
+    },
+    {
+        "id": "7",
+        "ChatID": 4,
+        "content": "Oi, Felipe! Tem algum plano para o final de semana?"
+    },
+    {
+        "id": "8",
+        "ChatID": 4,
+        "content": "Oi, Felipe! Como está a família?"
+    },
+    {
+        "id": "9",
+        "ChatID": 5,
+        "content": "Oi, Júlia! Você viu aquele filme que te recomendei?"
+    },
+    {
+        "id": "10",
+        "ChatID": 5,
+        "content": "Oi, Júlia! Como está o trabalho?"
+    },
+    {
+        "id": "11",
+        "ChatID": 6,
+        "content": "Bom dia, Marcos! Como você está se sentindo hoje?"
+    },
+    {
+        "id": "12",
+        "ChatID": 6,
+        "content": "Oi, Marcos! Como está o seu dia?"
+    },
+    {
+        "id": "13",
+        "ChatID": 7,
+        "content": "Oi, Renata! Tem novidades?"
+    },
+    {
+        "id": "14",
+        "ChatID": 7,
+        "content": "Oi, Renata! Como está o seu projeto?"
+    },
+    {
+        "id": "15",
+        "ChatID": 8,
+        "content": "Oi, Eduardo! Vamos marcar um café?"
+    },
+    {
+        "id": "16",
+        "ChatID": 8,
+        "content": "Oi, Eduardo! Como está a sua semana?"
+    },
+    {
+        "id": "17",
+        "ChatID": 9,
+        "content": "Olá, Gabriela! Como vai a sua semana?"
+    },
+    {
+        "id": "18",
+        "ChatID": 9,
+        "content": "Oi, Gabriela! Como você está?"
+    },
+    {
+        "id": "19",
+        "ChatID": 10,
+        "content": "Oi, Luciana! Tudo bem por aí?"
+    },
+    {
+        "id": "20",
+        "ChatID": 10,
+        "content": "Oi, Luciana! Como você está?"
+    },
+    {
+        "id": "21",
+        "ChatID": 11,
+        "content": "Bom dia, Fernando! Como está o trabalho?"
+    },
+    {
+        "id": "22",
+        "ChatID": 11,
+        "content": "Oi, Fernando! Vamos sair para tomar um café?"
+    },
+    {
+        "id": "23",
+        "ChatID": 12,
+        "content": "Oi, Camila! O que você tem feito ultimamente?"
+    },
+    {
+        "id": "24",
+        "ChatID": 12,
+        "content": "Oi, Camila! Como está o trabalho?"
+    },
+    {
+        "id": "25",
+        "ChatID": 13,
+        "content": "Oi, Paulo! Vamos fazer algo no fim de semana?"
+    },
+    {
+        "id": "26",
+        "ChatID": 13,
+        "content": "Oi, Paulo! Como você está?"
+    },
+    {
+        "id": "27",
+        "ChatID": 14,
+        "content": "Oi, Isabela! Como está o seu dia?"
+    },
+    {
+        "id": "28",
+        "ChatID": 14,
+        "content": "Oi, Isabela! Vamos fazer algo essa semana?"
+    },
+    {
+        "id": "29",
+        "ChatID": 15,
+        "content": "Bom dia, Bruno! Você viu o jogo ontem?"
+    },
+    {
+        "id": "30",
+        "ChatID": 15,
+        "content": "Oi, Bruno! Como foi o seu fim de semana?"
+    },
+    {
+        "id": "31",
+        "ChatID": 16,
+        "content": "Oi, Mariana! Como foi seu fim de semana?"
+    },
+    {
+        "id": "32",
+        "ChatID": 16,
+        "content": "Oi, Mariana! Tem algum plano para o próximo fim de semana?"
+    },
+    {
+        "id": "33",
+        "ChatID": 17,
+        "content": "Oi, Ricardo! Tem algum plano para hoje?"
+    },
+    {
+        "id": "34",
+        "ChatID": 17,
+        "content": "Oi, Ricardo! Como você está se sentindo?"
+    },
+    {
+        "id": "35",
+        "ChatID": 18,
+        "content": "Oi, Cláudia! Como foi a reunião?"
+    },
+    {
+        "id": "36",
+        "ChatID": 18,
+        "content": "Oi, Cláudia! Como está o projeto?"
+    },
+    {
+        "id": "37",
+        "ChatID": 19,
+        "content": "Oi, Tiago! Está tudo bem com você?"
+    },
+    {
+        "id": "38",
+        "ChatID": 19,
+        "content": "Oi, Tiago! Como foi o seu fim de semana?"
+    },
+    {
+        "id": "39",
+        "ChatID": 20,
+        "content": "Oi, Sofia! Vamos conversar mais tarde?"
+    },
+    {
+        "id": "40",
+        "ChatID": 20,
+        "content": "Oi, Sofia! Como está o seu dia?"
+    },
+    {
+        "id": "41",
+        "ChatID": 21,
+        "content": "Oi, Juliana! Como está a sua semana?"
+    },
+    {
+        "id": "42",
+        "ChatID": 21,
+        "content": "Oi, Juliana! O que você tem feito?"
+    },
+    {
+        "id": "43",
+        "ChatID": 22,
+        "content": "Oi, Vitor! Precisando de alguma coisa?"
+    },
+    {
+        "id": "44",
+        "ChatID": 22,
+        "content": "Oi, Vitor! Como está o seu dia?"
+    },
+    {
+        "id": "45",
+        "ChatID": 23,
+        "content": "Oi, Nathalia! Como está o seu projeto?"
+    },
+    {
+        "id": "46",
+        "ChatID": 23,
+        "content": "Oi, Nathalia! Como está a sua semana?"
+    },
+    {
+        "id": "47",
+        "ChatID": 24,
+        "content": "Olá, Leandro! Tem alguma novidade por aí?"
+    },
+    {
+        "id": "48",
+        "ChatID": 24,
+        "content": "Oi, Leandro! Vamos fazer algo no fim de semana?"
+    },
+    {
+        "id": "49",
+        "ChatID": 25,
+        "content": "Oi, Beatriz! Você vai à festa no fim de semana?"
+    },
+    {
+        "id": "50",
+        "ChatID": 25,
+        "content": "Oi, Beatriz! Como você está?"
+    },
+    {
+        "id": "51",
+        "ChatID": 26,
+        "content": "Oi, Ricardo! Como você está se sentindo hoje?"
+    },
+    {
+        "id": "52",
+        "ChatID": 26,
+        "content": "Oi, Ricardo! Como está o seu dia?"
+    },
+    {
+        "id": "53",
+        "ChatID": 27,
+        "content": "Oi, Tatiane! Como está o seu dia?"
+    },
+    {
+        "id": "54",
+        "ChatID": 27,
+        "content": "Oi, Tatiane! Tem algum plano para hoje?"
+    },
+    {
+        "id": "55",
+        "ChatID": 28,
+        "content": "Oi, Lucas! Tem algum plano para hoje?"
+    },
+    {
+        "id": "56",
+        "ChatID": 28,
+        "content": "Oi, Lucas! Vamos sair essa semana?"
+    },
+    {
+        "id": "57",
+        "ChatID": 29,
+        "content": "Oi, Amanda! Vamos marcar um encontro?"
+    }
+]
