@@ -2,6 +2,7 @@ package messaging
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/joaogabsoaresf/wpp-cli-bot/internal/api"
 	"github.com/joaogabsoaresf/wpp-cli-bot/internal/models"
@@ -21,7 +22,32 @@ func MockMessages() []Message {
 	}
 }
 
+func showLoading(duration time.Duration) {
+	frames := []string{"⣾", "⣽", "⣻", "⢿", "⡿", "⣟", "⣯", "⣷"}
+	done := make(chan bool)
+
+	go func() {
+		for i := 0; ; i++ {
+			select {
+			case <-done:
+				return
+			default:
+				// Exibe o frame atual do loading
+				fmt.Printf("\r\033[KCarregando mensagens %s", frames[i%len(frames)])
+				time.Sleep(100 * time.Millisecond)
+			}
+		}
+	}()
+
+	// Simula o tempo de carregamento do WebSocket
+	time.Sleep(duration)
+	done <- true
+	fmt.Printf("\r\033[KMensagens carregadas!\n")
+}
+
 func ListMessageByChatId(chat models.Chat) {
+	showLoading(3 * time.Second)
+
 	// Limpa o terminal antes de exibir as mensagens
 	fmt.Print("\033[H\033[2J")
 
@@ -61,6 +87,6 @@ func ListMessageByChatId(chat models.Chat) {
 
 		fmt.Print("\033[1A\033[K")
 
-		fmt.Printf("\033[34m%-20s %-40s\033[0m\n", chat.Name, message)
+		fmt.Printf("\033[34m%-20s %-40s\033[0m\n", "Eu", message)
 	}
 }
