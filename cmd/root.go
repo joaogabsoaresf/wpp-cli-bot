@@ -14,29 +14,34 @@ var rootCmd = &cobra.Command{
 	Short: "A simple WhatsApp bot using Cobra CLI",
 	Long:  `This is a CLI tool to interact with a WhatsApp bot, reply to messages, and more.`,
 	Run: func(cmd *cobra.Command, args []string) {
-		prompt := promptui.Select{
-			Label: "Escolha uma opção",
-			Items: []string{
-				"Listar Chats Recentes",
-				"Selecionar Chat Recente",
-				"Outra Opção",
-			},
-		}
+		for {
+			prompt := promptui.Select{
+				Label: "Escolha uma opção",
+				Items: []string{
+					"Listar Chats Recentes",
+					"Selecionar Chat Recente",
+					"Sair", // Adicionando a opção de sair
+				},
+			}
 
-		_, result, err := prompt.Run()
+			_, result, err := prompt.Run()
 
-		if err != nil {
-			fmt.Println("Erro ao fazer a seleção:", err)
-			os.Exit(1)
-		}
+			if err != nil {
+				fmt.Println("Erro ao fazer a seleção:", err)
+				os.Exit(1)
+			}
 
-		switch result {
-		case "Listar Chats Recentes":
-			messaging.ListRecentChats()
-		case "Selecionar Chat Recente":
-			messaging.ListChatsWithSelection()
-		default:
-			fmt.Println("Opção inválida")
+			switch result {
+			case "Listar Chats Recentes":
+				messaging.ListRecentChats()
+			case "Selecionar Chat Recente":
+				messaging.ListChatsWithSelection()
+			case "Sair":
+				fmt.Println("Saindo... Até logo!")
+				return // Sai do loop e encerra o programa
+			default:
+				fmt.Println("Opção inválida")
+			}
 		}
 	},
 }
