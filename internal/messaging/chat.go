@@ -2,16 +2,11 @@ package messaging
 
 import (
 	"fmt"
+	"strconv"
 
 	"github.com/joaogabsoaresf/wpp-cli-bot/internal/api"
 	"github.com/manifoldco/promptui"
 )
-
-type Chat struct {
-	ID      int
-	Name    string
-	LastMsg string
-}
 
 func ListRecentChats() {
 	chats, err := api.ApiRecentChat(10)
@@ -32,24 +27,20 @@ func ListRecentChats() {
 }
 
 func ListChatsWithSelection() {
-	// Obtém os chats recentes (max. 10)
 	chats, err := api.ApiRecentChat(10)
 	if err != nil {
 		fmt.Printf("erro ao obter os recentes: %v\n", err)
 		return
 	}
 
-	// Exibe o título para a listagem de chats
 	fmt.Println("\nConversas Recentes:")
 
-	// Prepara as opções para o promptui
 	var items []string
 	for _, chat := range chats {
-		item := fmt.Sprintf("%s - %s", chat.Name, chat.LastMsg)
+		item := fmt.Sprintf("%d - %s - %s", chat.ID, chat.Name, chat.LastMsg)
 		items = append(items, item)
 	}
 
-	// Função personalizada para alternar as cores das opções
 	prompt := promptui.Select{
 		Label: "Selecione um Chat",
 		Items: items,
@@ -65,21 +56,20 @@ func ListChatsWithSelection() {
 		return
 	}
 
-	// Encontra o chat selecionado
-	selectedID := -1
+	// Encontrar o chat selecionado e pegar o ID correto
+	var selectedChatID string
 	for _, chat := range chats {
-		if fmt.Sprintf("%d - %s", chat.ID, chat.Name) == selectedChat {
-			selectedID = chat.ID
+		if fmt.Sprintf("%d - %s - %s", chat.ID, chat.Name, chat.LastMsg) == selectedChat {
+			selectedChatID = strconv.Itoa(chat.ID)
 			break
 		}
 	}
 
-	// Exibe a última mensagem do chat selecionado
-	if selectedID != -1 {
+	// Se o chat foi encontrado, buscar as mensagens
+	if selectedChatID != "" {
 		for _, chat := range chats {
-			if chat.ID == selectedID {
-				// Exibe a última mensagem com a mesma formatação
-				fmt.Printf("\nÚltima Mensagem de %s: %s\n", chat.Name, chat.LastMsg)
+			if strconv.Itoa(chat.ID) == selectedChatID {
+				ListMessageByChatId(chat)
 				break
 			}
 		}
