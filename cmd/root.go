@@ -5,7 +5,6 @@ import (
 	"os"
 
 	"github.com/joaogabsoaresf/wpp-cli-bot/internal/messaging"
-
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
 )
@@ -19,8 +18,8 @@ var rootCmd = &cobra.Command{
 			Label: "Escolha uma opção",
 			Items: []string{
 				"Listar Chats Recentes",
+				"Selecionar Chat Recente",
 				"Outra Opção",
-				// Mais opções podem ser adicionadas aqui no futuro
 			},
 		}
 
@@ -34,6 +33,8 @@ var rootCmd = &cobra.Command{
 		switch result {
 		case "Listar Chats Recentes":
 			messaging.ListRecentChats()
+		case "Selecionar Chat Recente":
+			messaging.ListChatsWithSelection()
 		default:
 			fmt.Println("Opção inválida")
 		}
