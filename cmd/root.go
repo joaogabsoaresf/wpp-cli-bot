@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"os"
 
+	"github.com/joaogabsoaresf/wpp-cli-bot/internal/connectors"
 	"github.com/joaogabsoaresf/wpp-cli-bot/internal/messaging"
 	"github.com/manifoldco/promptui"
 	"github.com/spf13/cobra"
@@ -20,6 +21,7 @@ var rootCmd = &cobra.Command{
 				Items: []string{
 					"Listar Chats Recentes",
 					"Selecionar Chat Recente",
+					"Metadados do Número Default",
 					"Sair", // Adicionando a opção de sair
 				},
 			}
@@ -36,6 +38,8 @@ var rootCmd = &cobra.Command{
 				messaging.ListRecentChats()
 			case "Selecionar Chat Recente":
 				messaging.ListChatsWithSelection()
+			case "Metadados do Número Default":
+				connectors.GetMetaDataFromDefault()
 			case "Sair":
 				fmt.Println("Saindo... Até logo!")
 				return // Sai do loop e encerra o programa
