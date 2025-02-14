@@ -24,7 +24,6 @@ var rootCmd = &cobra.Command{
 					"Listar Chats Recentes",
 					"Selecionar Chat Recente",
 					"Metadados do Número Default",
-					"Enviar Mensagem de Teste",
 					"Sair", // Adicionando a opção de sair
 				},
 			}
@@ -43,8 +42,6 @@ var rootCmd = &cobra.Command{
 				messaging.ListChatsWithSelection()
 			case "Metadados do Número Default":
 				zapi.GetMetaDataFromDefault()
-			case "Enviar Mensagem de Teste":
-				zapi.SendMsg()
 			case "Sair":
 				fmt.Println("Saindo... Até logo!")
 				return // Sai do loop e encerra o programa

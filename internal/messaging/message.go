@@ -4,8 +4,7 @@ import (
 	"fmt"
 	"time"
 
-	"github.com/joaogabsoaresf/wpp-cli-bot/internal/api"
-	"github.com/joaogabsoaresf/wpp-cli-bot/internal/models"
+	"github.com/joaogabsoaresf/wpp-cli-bot/internal/connectors/zapi"
 	"github.com/manifoldco/promptui"
 )
 
@@ -45,23 +44,18 @@ func showLoading(duration time.Duration) {
 	fmt.Printf("\r\033[KMensagens carregadas!\n")
 }
 
-func ListMessageByChatId(chat models.Chat) {
-	showLoading(3 * time.Second)
+func ListMessageByChatId(chat zapi.ChatResponse) {
+	showLoading(1 * time.Second)
 
 	// Limpa o terminal antes de exibir as mensagens
 	fmt.Print("\033[H\033[2J")
 
-	fmt.Println("\nMensagens Recentes:")
-	messages, err := api.ApiMessagesByID(chat.ID, 10)
-	if err != nil {
-		fmt.Printf("erro ao obter os recentes: %v", err)
-		return
+	displayValue := chat.Name
+	if displayValue == "" {
+		displayValue = chat.Phone
 	}
 
-	fmt.Printf("Mensagens Recentes do(a) %s:\n", chat.Name)
-	for _, message := range messages {
-		fmt.Printf("\033[32m%-20s %-40s\033[0m\n", chat.Name, message.Content)
-	}
+	fmt.Printf("%s", displayValue)
 
 	for {
 		prompt := promptui.Prompt{
@@ -88,5 +82,6 @@ func ListMessageByChatId(chat models.Chat) {
 		fmt.Print("\033[1A\033[K")
 
 		fmt.Printf("\033[34m%-20s %-40s\033[0m\n", "Eu", message)
+		zapi.SendMsg(chat.Phone, message)
 	}
 }

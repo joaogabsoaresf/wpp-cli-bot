@@ -2,42 +2,47 @@ package messaging
 
 import (
 	"fmt"
-	"strconv"
 
-	"github.com/joaogabsoaresf/wpp-cli-bot/internal/api"
+	"github.com/joaogabsoaresf/wpp-cli-bot/internal/connectors/zapi"
 	"github.com/manifoldco/promptui"
 )
 
 func ListRecentChats() {
-	chats, err := api.ApiRecentChat(10)
+	chats, err := zapi.GetLastChats()
 	if err != nil {
 		fmt.Printf("erro ao obter os recentes: %v", err)
 		return
 	}
 	fmt.Println("Chats Recentes:")
 	for i, chat := range chats {
+		displayValue := chat.Name
+		if displayValue == "" {
+			displayValue = chat.Phone
+		}
 		if i%2 == 0 {
-			// Linha ímpar (cor verde)
-			fmt.Printf("\033[32m%-20s %-40s\033[0m\n", chat.Name, chat.LastMsg)
+			fmt.Printf("\033[32m%-20s\n", displayValue)
 		} else {
-			// Linha par (cor azul)
-			fmt.Printf("\033[34m%-20s %-40s\033[0m\n", chat.Name, chat.LastMsg)
+			fmt.Printf("\033[34m%-20s\n", displayValue)
 		}
 	}
 }
 
 func ListChatsWithSelection() {
-	chats, err := api.ApiRecentChat(10)
+	chats, err := zapi.GetLastChats()
 	if err != nil {
-		fmt.Printf("erro ao obter os recentes: %v\n", err)
+		fmt.Printf("erro ao obter os recentes: %v", err)
 		return
 	}
 
-	fmt.Println("\nConversas Recentes:")
+	fmt.Println("\nChats:")
 
 	var items []string
-	for _, chat := range chats {
-		item := fmt.Sprintf("%d - %s - %s", chat.ID, chat.Name, chat.LastMsg)
+	for i, chat := range chats {
+		displayValue := chat.Name
+		if displayValue == "" {
+			displayValue = chat.Phone
+		}
+		item := fmt.Sprintf("%d - %s", i, displayValue)
 		items = append(items, item)
 	}
 
@@ -58,9 +63,13 @@ func ListChatsWithSelection() {
 
 	// Encontrar o chat selecionado e pegar o ID correto
 	var selectedChatID string
-	for _, chat := range chats {
-		if fmt.Sprintf("%d - %s - %s", chat.ID, chat.Name, chat.LastMsg) == selectedChat {
-			selectedChatID = strconv.Itoa(chat.ID)
+	for i, chat := range chats {
+		displayValue := chat.Name
+		if displayValue == "" {
+			displayValue = chat.Phone
+		}
+		if fmt.Sprintf("%d - %s", i, displayValue) == selectedChat {
+			selectedChatID = chat.Phone
 			break
 		}
 	}
@@ -68,7 +77,7 @@ func ListChatsWithSelection() {
 	// Se o chat foi encontrado, buscar as mensagens
 	if selectedChatID != "" {
 		for _, chat := range chats {
-			if strconv.Itoa(chat.ID) == selectedChatID {
+			if chat.Phone == selectedChatID {
 				ListMessageByChatId(chat)
 				break
 			}

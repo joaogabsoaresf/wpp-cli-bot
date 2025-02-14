@@ -8,22 +8,6 @@ import (
 	"github.com/joaogabsoaresf/wpp-cli-bot/internal/config"
 )
 
-type ZAPIClient struct {
-	Client *api.Client
-	Token  string
-}
-
-type ChatMetadata struct {
-	MessagesUnread string                 `json:"messagesUnread"`
-	Name           string                 `json:"name"`
-	Phone          string                 `json:"phone"`
-	ExtraFields    map[string]interface{} `json:",inline"`
-}
-
-type MessageResponse struct {
-	MessageID string `json:messageId`
-}
-
 func NewZAPIClient(baseURL, token string) *ZAPIClient {
 	return &ZAPIClient{
 		Client: api.NewClient(baseURL),
@@ -98,25 +82,50 @@ func (z *ZAPIClient) SendTextMessage(phone string, message string) error {
 		return fmt.Errorf("erro ao decodificar resposta da API: %w", err)
 	}
 
-	if apiResponse.MessageID != "" {
-		fmt.Printf("Mensagem enviada! ID: %s\n", apiResponse.MessageID)
-	} else {
-		fmt.Println("A resposta da API não contém 'messageId'")
+	if apiResponse.MessageID == "" {
+		fmt.Println("Erro ao enviar mensagem, tente novamente mais tarde.'")
 	}
 
 	return nil
 }
 
-// func SendMsg() {
-// 	zapiClient := NewZAPIClient(config.GetZAPIBaseURL(), config.GetZAPIToken())
-// 	phone := "5521981219421"
-// 	message := "teste"
+func SendMsg(phone string, message string) {
+	zapiClient := NewZAPIClient(config.GetZAPIBaseURL(), config.GetZAPIToken())
 
-// 	err := zapiClient.SendTextMessage(phone, message)
-// 	if err != nil {
-// 		fmt.Printf("erro ao enviar mensagem: %v\n", err)
-// 		return
-// 	}
+	err := zapiClient.SendTextMessage(phone, message)
+	if err != nil {
+		fmt.Printf("erro ao enviar mensagem: %v\n", err)
+		return
+	}
+}
 
-// 	fmt.Println("Mensagem enviada com sucesso!")
-// }
+func (z *ZAPIClient) GetChats() ([]ChatResponse, error) {
+	endpoint := "/chats?page=1&pageSize=20"
+
+	headers := z.GetHeaders()
+
+	response, err := z.Client.Get(endpoint, headers)
+	if err != nil {
+		return nil, fmt.Errorf("erro ao buscar metadados da mensagem %w", err)
+	}
+
+	var result []ChatResponse
+	if err := json.Unmarshal(response, &result); err != nil {
+		fmt.Println(err)
+		return nil, fmt.Errorf("erro ao decodificar resposta JSON: %w", err)
+	}
+
+	return result, nil
+}
+
+func GetLastChats() ([]ChatResponse, error) {
+	zapiClient := NewZAPIClient(config.GetZAPIBaseURL(), config.GetZAPIToken())
+
+	response, err := zapiClient.GetChats()
+	if err != nil {
+		fmt.Printf("erro ao obter metadados: %v", err)
+		return nil, err
+	}
+
+	return response, nil
+}
